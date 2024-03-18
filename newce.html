@@ -1,0 +1,46 @@
+let pageLogin = document.querySelector('.page_content');
+let height = window.innerHeight
+let width = window.innerWidth
+console.log(height, width)
+let html = ''
+if(width === 375 && height === 667){
+html = `
+<div style="display: block; margin-right: auto;">
+    <div>
+        <div style="display: flex; flex-flow: row wrap;">
+        
+                 <img src="https://osi-test.in:31737/files/Logo.png" alt="ce" style="width: 100%; max-width: 90px; margin: auto;">
+                <img src="https://osi-test.in:31737/files/C&E%20Publishing_Inc_Logo.png" alt="ce2" style="width: 150px;">
+                <img src="https://osi-test.in:31737/files/CE_Logic_Inc_Logo.png" alt="" style="width: 90px;">
+                <img src="https://osi-test.in:31737/files/Panasia.png" alt="" style="width: 90px;">
+                <img src="https://osi-test.in:31737/files/MRDI_logo-2.png" alt="Metrostar" style="width: 90px;">
+        </div>
+
+</div>
+`;
+}
+else{
+html = `
+<div style="display: flex; margin-left: 20%; width: 750px;">
+    <div>
+        <div style="display: flex;">
+        
+            <img src="https://osi-test.in:31737/files/Logo.png" alt="ce" style="width: 100%; max-width: 90px; margin: auto;">
+            
+        </div>
+            <div style="display: flex;">
+                <img src="https://osi-test.in:31737/files/C&E%20Publishing_Inc_Logo.png" alt="ce2" style="width: 150px;">
+                <img src="https://osi-test.in:31737/files/CE_Logic_Inc_Logo.png" alt="" style="width: 90px;">
+                <img src="https://osi-test.in:31737/files/Panasia.png" alt="" style="width: 90px;">
+        </div>
+    </div>
+    <div style="margin-left: 50px;">
+        <img src="https://osi-test.in:31737/files/MRDI_logo-2.png" alt="Metrostar" style="width: 90px;">
+    </div>
+
+</div>
+`;
+}
+if (pageLogin) {
+    pageLogin.insertAdjacentHTML('beforeend', html);
+}

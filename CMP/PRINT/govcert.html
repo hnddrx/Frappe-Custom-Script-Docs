@@ -1,0 +1,127 @@
+<div style="margin-top: 3in;margin-left: 1in;margin-right: 1in;">
+    <p style="line-height:16.5pt; text-align: center;"><strong><span style='font-size:19px;font-family:"Bookman Old Style",serif;color:black;'>CERTIFICATION</span></strong></p>
+    <p style="line-height:13.95pt; text-align: right;"><strong><span style='font-size:16px;font-family:"Calibri",sans-serif;color:black;'>{{frappe.utils.formatdate(doc.date_requested, 'dd-MMMM-yyyy')}}</span></strong></p>
+</div>
+
+<br>
+
+<p style="line-height:14.25pt; text-align: justify;margin-left: 1in;margin-right: 1in;"><strong><span style='font-size:16px;font-family:"Calibri",sans-serif;color:black;'>TO WHOM IT MAY CONCERN :</span></strong></p>
+
+<br>
+
+<div style="text-align: justify; margin-left: 1in;margin-right: 1in;">
+    <p style="line-height:14.25pt;">
+    <span style='font-size:16px;font-family:"Calibri",sans-serif;color:black;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hereunder is the list of 
+    <strong>
+        {% if doc.type == "SSS" %}
+        SSS
+        {% elif doc.type == "HDMF" %}
+        Pag-Ibig
+        {% else %}
+        PhilHealth
+        {% endif %}
+    </strong>
+    </span>
+    <span style='font-size:16px;font-family:"Calibri",sans-serif;color:black;'>and Employee's Compensation Contributions paid on behalf of 
+        {% if frappe.db.get_value("Employee", doc.employee, "Gender") == "Male" %}
+            Mr.
+        {% else %}
+            Ms.
+        {% endif %}
+    <strong>
+        {{frappe.db.get_value("Employee", doc.employee, "full_name")|upper}}
+    </strong> with 
+    <strong>
+        {% if doc.type == "SSS" %}
+        SSS No.
+        {% elif doc.type == "HDMF" %}
+        Pag-Ibig No.
+        {% else %}
+        PhilHealth No.
+        {% endif %}
+    </strong>
+    <strong>
+        {% if doc.type == "SSS" %}
+            {{frappe.db.get_value("Employee", doc.employee, "sss_no")}}.
+        {% elif doc.type == "HDMF" %}
+            {{frappe.db.get_value("Employee", doc.employee, "hdmf_no")}}.
+        {% else %}
+            {{frappe.db.get_value("Employee", doc.employee, "phic_no")}}.
+        {% endif %}
+    </strong>
+    </span>
+    </p>
+</div>
+<center>
+<div style="padding-top: 2em; ">
+    <table style="width: 80%;">
+        <tr style="font-size: 16px; font-family: 'Calibri';">
+            <td> </td>
+            <td style="text-align: center; font-weight: bold;">Month</td>
+            <td style="text-align: center; font-weight: bold;">Year</td>
+            <td style="text-align: center; font-weight: bold;">
+                {% if doc.type == "SSS" %}
+                SSS
+                {% elif doc.type == "HDMF" %}
+                Pag-Ibig
+                {% else %}
+                PhilHealth
+                {% endif %}
+            </td>
+            <td style="text-align: center; font-weight: bold;">
+                {% if doc.type == "SSS" %}
+                SBR No.
+                {% elif doc.type == "HDMF" %}
+                HDMF No.
+                {% else %}
+                PBR No.
+                {% endif %}
+            </td>
+            <td style="text-align: center; font-weight: bold;">Date Paid</td>
+        </tr>
+        {% for row in doc.employees %}
+        <tr style="font-size: 16px; font-family: 'Calibri';">
+            <td style="text-align: center;"> 
+                {{row.idx}}.
+            </td>
+            <td style="text-align: left;">
+                {{row.get_formatted('month')}}
+            </td>
+            <td style="text-align: center;">
+                {{row.get_formatted('year')}}   
+            </td>
+            <td style="text-align: center;">
+                {{ frappe.format(row.amount, 'Currency')}}    
+            </td>
+            <td style="text-align: center;"> 
+                {{row.sbr}}    
+            </td>
+            <td style="text-align: center;"> 
+                {{row.get_formatted('paid_date')}}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+</center>
+<br>
+
+<p style="line-height:17.25pt; text-align: justify;margin-left: 1in;margin-right: 1in;">
+<span style='font-size:16px;font-family:"Calibri",sans-serif;color:black;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This certification is being issued upon the request of the above-named employee for whatever legal purpose it may serve 
+    {% if frappe.db.get_value("Employee", doc.employee, "Gender") == "Male" %}
+        him
+    {% else %}
+        her
+    {% endif %} best.
+</span>
+</p>
+<div style="padding-top: 10em; text-align: right;margin-left: 1in;margin-right: 1in;">
+    <div style="padding-left: 29em;">
+        <div style="text-align: center;">
+            <p style="line-height:14.25pt;"><strong><span style='font-size:16px;font-family:"Calibri",sans-serif;color:black;'>{{frappe.db.get_value("Employee", doc.certified_by, "full_name")|upper}}</span></strong></p>
+            <p style="line-height:16.0pt;"><span style='font-size:16px;font-family:"Calibri",sans-serif;color:black;'>General Affairs and Human Resource&nbsp;</span></p>
+            <p style="line-height:14.25pt;"><span style='font-size:16px;font-family:"Calibri",sans-serif;color:black;'>Department</span></p>
+        </div>
+    </div>
+</div>
